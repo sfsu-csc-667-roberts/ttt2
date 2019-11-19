@@ -1,5 +1,3 @@
 const playACardButton = document.getElementById('play');
 
-playACardButton.addEventListener('click', event => {
-
-});
+playACardButton.addEventListener('click', event => {});

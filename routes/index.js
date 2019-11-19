@@ -3,7 +3,7 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', function(_request, response) {
-  response.render('unauthenticated/index', { 
+  response.render('unauthenticated/index', {
     unauthenticatedRoutes: [
       { name: 'Site Landing', uri: '/' },
       { name: 'User Registration', uri: '/users/register' },

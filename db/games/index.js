@@ -6,4 +6,4 @@ module.exports = {
   create,
   delete: remove,
   read
-}
+};
