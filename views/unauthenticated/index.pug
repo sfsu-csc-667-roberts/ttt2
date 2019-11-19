@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1 Sitemap for now
+
+  h2 Unauthenticated Pages
+    ul
+      each page in unauthenticatedRoutes
+        li
+          a(href=page.uri)= page.name
+
+  h2 Authenticated Pages
+    ul
+      each page in authenticatedRoutes
+        li
+          a(href=page.uri)= page.name

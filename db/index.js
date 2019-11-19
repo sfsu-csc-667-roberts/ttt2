@@ -1,4 +1,13 @@
-const pgp = require('pg-promise')();
-const connection = pgp(process.env.DATABASE_URL);
+const Games = require('./games');
+const Users = require('./users');
 
-module.exports = connection;
+module.exports = {
+  Games,
+  Users
+}
+
+// Route
+const Db = require('../db');
+
+Db.Games.create()
+  .then(result => {})
