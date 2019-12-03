@@ -1,4 +1,10 @@
 extends ../layout
 
 block content
-  p You are on the user login page
+  form(action='/users/login' method='post')
+    input#email(type='text' name='email')
+    input#password(type='text' name='password')
+    input(type='submit')
+
+  p Need to register? 
+    a(href='/users/register') Do it here!

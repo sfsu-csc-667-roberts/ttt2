@@ -2,7 +2,8 @@ const bcrypt = require('bcrypt');
 
 const db = require('../connection');
 
-const CREATE_SQL = 'INSERT INTO users (email, password) VALUES ($1, $2)';
+const CREATE_SQL =
+  'INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *';
 const create = (email, password) => {
   const hash = bcrypt.hashSync(password, 10);
 

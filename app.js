@@ -29,16 +29,9 @@ app.use(cookieParser());
 
 app.use(
   session({
-    store: new (require('connect-pg-simple')(session))(),
     secret: process.env.COOKIE_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure:
-        process.env.ENVIRONMENT !== 'development' &&
-        process.env.ENVIRONMENT !== 'test',
-      maxAge: 2419200000
-    }
+    resave: true,
+    saveUninitialized: true
   })
 );
 
