@@ -7,6 +7,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const passport = require('./auth');
+const session = require('express-session');
 
 const indexRouter = require('./routes/index');
 const testsRouter = require('./routes/tests');
@@ -24,6 +26,26 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(
+  session({
+    store: new (require('connect-pg-simple')(session))(),
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure:
+        process.env.ENVIRONMENT !== 'development' &&
+        process.env.ENVIRONMENT !== 'test',
+      maxAge: 2419200000
+    }
+  })
+);
+
+// Initialize Passport session
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
