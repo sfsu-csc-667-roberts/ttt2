@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', function(request, response) {
+const isLoggedIn = require('../../auth/middleware/isLoggedIn');
+
+router.get('/', isLoggedIn, function(_, response) {
   response.render('authenticated/lobby', { title: 'Express' });
 });
 
