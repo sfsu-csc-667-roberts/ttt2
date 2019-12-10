@@ -4,11 +4,16 @@ const router = express.Router();
 const User = require('../db/users');
 const passport = require('../auth');
 
-router.get('/login', function(_, response) {
+router.get('/login', (_, response) => {
   response.render('unauthenticated/users/login');
 });
 
-router.get('/register', function(_, response) {
+router.get('/logout', (request, response) => {
+  request.logout();
+  response.redirect('/');
+});
+
+router.get('/register', (_, response) => {
   response.render('unauthenticated/users/register');
 });
 

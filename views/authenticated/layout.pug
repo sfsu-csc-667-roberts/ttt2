@@ -2,6 +2,28 @@ doctype html
 html
   head
     title= title
+
+    // Import google font
+    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+    // Import materialize.css
+    link(type='text/css', rel='stylesheet', href='/stylesheets/materialize.css',  media='screen,projection')
+    // Import site styles
     link(rel='stylesheet', href='/stylesheets/style.css')
+    // Let browser know website is optimized for mobile
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
   body
-    block content
+    nav
+      div.nav-wrapper
+        a.brand-log(href='/lobby') TTT2
+
+        ul#nav-mobile.right.hide-on-med-and-down
+          li
+            a(href='/users/logout') #{user.email} Logout
+
+    main.container
+      block content
+      
+    script(type='text/javascript'. src='/javascripts/materialize.min.js')
+    block scripts
+

@@ -1,8 +1,7 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+main.row {
+  padding-top: 15px;
 }
 
-a {
-  color: #00B7FF;
+.active-games li {
+  padding-bottom: 4px;
 }

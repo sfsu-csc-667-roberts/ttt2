@@ -1,4 +1,16 @@
 extends layout
 
 block content
-  p You #{user.email} are in the lobby (this is an authenticated page)
+  main.row
+    section.col.s6.game-listing
+      .active-games
+
+      form(method='post', action='/games/create')
+        button.btn.waves-effect.waves-light.create-game(type='submit') Create A Game
+          i.material-icons.right send
+
+    section.col.s6.chat
+      p This is the chat area
+
+block scripts
+  script(src='/javascripts/lobby.js')
