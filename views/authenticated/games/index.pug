@@ -1,4 +1,14 @@
 extends ../layout
 
 block content
-  p You #{user.email} are on the games landing page for game #{id}
+  main.row
+    section.col.s6.game
+      p This is the game area
+
+    section.col.s6.chat
+      p This is the chat area
+
+block scripts
+  script.
+    const gameId = #{id}
+  script(src='/javascripts/games.js')

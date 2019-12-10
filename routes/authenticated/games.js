@@ -16,10 +16,24 @@ router.post('/create', isLoggedIn, (request, response) => {
     .catch(error => response.json({ error }));
 });
 
-router.get('/:id', isLoggedIn, function(request, response) {
-  const { id } = request.params;
+const checkIfInGame = (users, userId) => users.find(user => user.id === userId);
 
-  response.render('authenticated/games/index', { id });
+router.get('/:id', isLoggedIn, function(request, response) {
+  const { id: gameId } = request.params;
+  const { id: userId } = request.user;
+
+  Games.find(gameId).then(({ users }) => {
+    if (checkIfInGame(users, userId)) {
+      response.render('authenticated/games/index', { id: gameId, users });
+    } else if (users.length == 2) {
+      // Two people are already in this game
+      response.redirect('/lobby');
+    } else {
+      Games.join(gameId, userId).then(({ users }) =>
+        response.render('authenticated/games/index', { id: gameId, users })
+      );
+    }
+  });
 });
 
 module.exports = router;
